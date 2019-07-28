@@ -1,0 +1,54 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy import uint8
+img1 = cv2.imread('gazou.jpg',0)
+img = cv2.resize(img1,dsize=(400, 350))
+f = np.fft.fft2(img)
+f_shift = np.fft.fftshift(f)
+
+ms = 20*np.log(np.abs(f_shift))
+msm= int(np.max(ms))
+height,width=img.shape
+mask=np.zeros((height,width))
+mask2=np.zeros((height,width))
+def mouse_event(event,x,y,flags,param):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        mask[:,:]=0
+        mask2[y,x]=1.0
+        mask[y,x]=1.0
+    if event==cv2.EVENT_RBUTTONDOWN:
+        mask[:,:]=0
+        mask2[y-4:y-4,x-4:x+4]=1.0
+        mask[y,x]=1.0
+    if event==cv2.EVENT_MOUSEMOVE:
+        if flags==cv2.EVENT_FLAG_LBUTTON:
+            mask[:,:]=0
+            mask2[y,x]=1.0
+            mask[y,x]=1.0
+        if flags==cv2.EVENT_FLAG_RBUTTON:
+            mask[:,:]=0
+            mask2[y-4:y+4,x-4:x+4]=1.0
+            mask[y,x]=1.0
+
+while (True):
+        a_ff=np.fft.fftshift(f_shift*mask2)
+        a_if=np.fft.ifft2(a_ff)
+        a_ia=np.abs(a_if)
+        a_max=np.max(a_ia)
+        a_min=np.min(a_ia)        
+        b_ff=np.fft.fftshift(f_shift*mask)
+        b_if=np.fft.ifft2(b_ff)
+        b_ia=np.abs(b_if)
+        b_max=np.max(b_ia)
+        b_min=np.min(b_ia)
+        cv2.imshow("original_image",img)
+        cv2.imshow("magnitude_spectrum",(255*ms/msm).astype(uint8))
+        cv2.imshow("Inverse Fourier transform",((a_ia-a_min)/(a_max-a_min)*255).astype(uint8))
+        cv2.imshow("click!",mask2)
+        cv2.imshow("Fourier_transform",((b_ia-b_min)/(b_max-b_min)*255).astype(uint8))
+        cv2.setMouseCallback("click!",mouse_event)
+        cv2.setMouseCallback("magnitude_spectrum",mouse_event)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+cv2.destroyAllWindows()         
