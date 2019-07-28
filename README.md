@@ -2,7 +2,7 @@
 今回作ったコードは、画像をOpenCVで取得し、それをマウスで指定した場所をフーリエ変換を行う。さらにそれを逆フーリエ変換し元画像に戻すという内容。
 
 # 実行結果
-
+![](https://raw.github.com/wiki/macky1737/github/images/FFT.mp4)
 # 使い方  
 使い方は、実行すると表示される5つのウィンドウのうち、clickにマウスを持っていく。clickに押された場所をフーリエ変換し、Fourier_transformに表示。
 また逆フーリエ変換をInverse Fourier transformで行う。もう二つの画像は、一つは変換を行う元画像とフーリエ変換を行った画像である。
