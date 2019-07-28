@@ -2,6 +2,8 @@
 今回作ったコードは、画像をOpenCVで取得し、それをマウスで指定した場所をフーリエ変換を行う。さらにそれを逆フーリエ変換し元画像に戻すという内容。
 
 # 実行結果
+![bandicam 2019-07-28 16-05-45-871](https://user-images.githubusercontent.com/53041908/62003855-4e469e00-b158-11e9-8c12-aad06cca82f6.jpg)
+
 ![](https://raw.github.com/wiki/macky1737/github/images/FFT.mp4)
 # 使い方  
 使い方は、実行すると表示される5つのウィンドウのうち、clickにマウスを持っていく。clickに押された場所をフーリエ変換し、Fourier_transformに表示。
