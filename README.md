@@ -1,13 +1,13 @@
-#フーリエ変換  
+# フーリエ変換  
 今回作ったコードは、画像をOpenCVで取得し、それをマウスで指定した場所をフーリエ変換を行う。さらにそれを逆フーリエ変換し元画像に戻すという内容。
 
-#実行結果
+# 実行結果
 
-#使い方  
+# 使い方  
 使い方は、実行すると表示される5つのウィンドウのうち、clickにマウスを持っていく。clickに押された場所をフーリエ変換し、Fourier_transformに表示。
 また逆フーリエ変換をInverse Fourier transformで行う。もう二つの画像は、一つは変換を行う元画像とフーリエ変換を行った画像である。
 
-#参考資料  
+# 参考資料  
 参考にしたサイトは
 http://lang.sist.chukyo-u.ac.jp/classes/OpenCV/py_tutorials/py_imgproc/py_transforms/py_fourier_transform/py_fourier_transform.html  
 このサイトではフーリエ変換のコードを参考にさせてもらった  
